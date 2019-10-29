@@ -1,0 +1,174 @@
+<div class="container my-margin-top2">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="card bg-light col-md-8">
+            <div class="card-body">
+              <h3 class="text-center myColor">Signup</h3>
+              <br>
+              <!--{{diagnostic}}-->
+              <form #signupForm="ngForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+                <div id="common">
+                    <div class="form-group row text-right">
+                        <label for="roles" class="col-sm-3 control-label"><font class="myColor_red">*</font>Role:</label>
+                        <div class="col-sm-8">
+                            <select id="roles" class="form-control" (change)="roleChange(this)">
+                                    <option *ngFor="let item of signupModle.roleTypes" [value]='item'>{{item}}</option> 
+                            </select>
+                            
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label"></label>
+                    </div>
+                    <div class="form-group row text-right">
+                        <label for="userName" class="col-sm-3 control-label">
+                            <font class="myColor_red">*</font>User Name:
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="userName" type="text" class="form-control" placeholder="User Name can be your email address"
+                            name="userName"  [(ngModel)]="signupModle.userName" #userName="ngModel" required>
+                        </div>
+                        <div class="alert alert-danger text-left" [hidden]="userName.valid || userName.pristine">
+                            userName is required
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+                    
+                    <div class="form-group row text-right">
+                        <label for="password" class="col-sm-3 control-label">
+                            <font class="myColor_red">*</font>Password:
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="password" type="text" class="form-control" placeholder="Input your password" 
+                            name="password"  [(ngModel)]="signupModle.password" required>
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+
+
+                    <div class="form-group row text-right">
+                        <label for="email" class="col-sm-3 control-label">
+                            <font class="myColor_red">*</font>Email:
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="email" type="text" class="form-control" placeholder="Input your valid email"
+                            name="email"  [(ngModel)]="signupModle.email" required>
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+
+                    <div class="form-group row text-right">
+                        <label class="col-sm-3 control-label">
+                            Contact Number:
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="contactNumber" type="text" class="form-control" placeholder="Input your contact number"
+                            name="contactNumber"  [(ngModel)]="signupModle.contactNumber">
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+
+                </div>
+                <div id="special" style="display:none">
+                    <div class="form-group row text-right">
+                        <label for="timeZone" class="col-sm-3 control-label">Time Zone:</label>
+                        <div class="col-sm-8">
+                            <select id="timeZones" class="form-control">
+                                <option>Indian Standard Time: GTM+5:30</option>
+                                <option>Estern Standard Time: GTM-4:00</option>
+                                <option>HongKong Time: GTM+8:00</option>
+                            </select>
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+
+                    <div class="form-group row text-right">
+                        <label for="workingTime" class="col-sm-3 control-label">
+                            <font class="myColor_red">*</font>Working Time:</label>
+                        <div id="datetimepicker-group1" data-target-input="nearest" class="col-sm-3">
+                            <input  id="signup_startTime" name="signup_startTime" [(ngModel)]="signupModle.signup_startTime" 
+                            type="text" class="form-control datetimepicker-signup input-group-addon"
+                            placeholder="start time" required/>
+                        </div>
+                        <span   class="text-center col-sm-1">—</span>
+                        <div id="datetimepicker-group2" data-target-input="nearest" class="col-sm-3">
+                            <input  id="signup_endTime" name="signup_endTime" [(ngModel)]="signupModle.signup_endTime" type="text" 
+                            class="form-control datetimepicker-signup input-group-addon"
+                            placeholder="end time" required/>
+                        </div>
+                        <label for="roles" class="col-sm-2 control-label"></label>
+                    </div>
+
+                    <div class="form-group row text-left">
+                        <label class="col-sm-3 control-label text-right">
+                                <font class="myColor_red">*</font>Technologies:</label>
+                        <div id="techlist" class="col-sm-8">
+                            <label class="checkbox-inline text-left mr-sm-2" *ngFor="let item of sharedService.technologyList" >
+                                <input id="technology{{item.id}}" type="checkbox" [value]='item.id' 
+                                (click)="selectCheckbox($event.target.checked,$event.target.value)"/>
+                                {{item.technologyName}}
+                            </label>
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+<!--
+                    <div class="form-group row text-right">
+                        <label for="facilitiesProvided" class="col-sm-3 control-label">Facilities Provided:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+
+                    <div class="form-group row text-right">
+                        <label for="cloudLabs" class="col-sm-3 control-label">Cloud Labs:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control">
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+-->
+
+                    <div class="form-group row text-right">
+                        <label for="linkedinURL" class="col-sm-3 control-label">Linkedin URL:</label>
+                        <div class="col-sm-8">
+                            <input id="linkedinURL" name="linkedinURL" [(ngModel)]="signupModle.linkedinURL" type="text" 
+                            class="form-control" placeholder="Input your linkedinURL">
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+
+                    <div class="form-group row text-right">                        
+                        <label for="yearsOfWorking" class="col-sm-3 control-label">Working Years:</label>
+                        <div class="col-sm-8">
+                            <select id="yearsOfWorking" class="form-control" (change)="confirmWorkingYears()">
+                                <option *ngFor="let item of signupModle.yearsList" [value]='item'>{{item}}</option> 
+                            </select>
+                        </div>
+                        <label for="roles" class="col-sm-1 control-label">
+                        </label>
+                    </div>
+                    </div>	
+
+                    <div class="row-centered" >
+                        <label for="roles" class="col-sm-1 control-label"></label>
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="!signupForm.form.valid ">
+                        Register</button>
+                        <label for="roles" class="col-sm-1 control-label"></label>
+                    </div>
+              </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
