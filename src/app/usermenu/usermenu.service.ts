@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import {ProposedTraining} from './usermenu'
+import { FSConfigurations } from "../../global-config";
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,9 @@ import {ProposedTraining} from './usermenu'
 export class UsermenuService {
   public currentTrainingList: any[];
 
-  readonly currentTrainingsURL = "http://localhost:8080/currentTrainings";
-  readonly completedTrainingsURL = "http://localhost:8080/completedTrainings";
-  readonly proposeTrainingURL = "http://localhost:8080/proposeTraining";
+  readonly currentTrainingsURL = FSConfigurations.serverURL + "currentTrainings";
+  readonly completedTrainingsURL = FSConfigurations.serverURL + "completedTrainings";
+  readonly proposeTrainingURL = FSConfigurations.serverURL + "proposeTraining";
 
   constructor(private _http: HttpClient) { }
 

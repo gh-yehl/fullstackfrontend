@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
+import { FSConfigurations } from "../../global-config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminmenuService {
 
-
-  readonly userListURL = "http://localhost:8080/findUsers";
-  readonly changeUserStatusURL = "http://localhost:8080/changeUserStatus";
-  readonly editTechnologyURL = "http://localhost:8080/editTechnology";
-  readonly addTechnologyURL = "http://localhost:8080/addTechnology";
-  readonly removeTechnologyURL = "http://localhost:8080/deleteTechnology";
-
-
+  readonly userListURL =  FSConfigurations.serverURL + "findUsers";
+  readonly changeUserStatusURL = FSConfigurations.serverURL + "changeUserStatus";
+  readonly editTechnologyURL = FSConfigurations.serverURL + "editTechnology";
+  readonly addTechnologyURL = FSConfigurations.serverURL + "addTechnology";
+  readonly removeTechnologyURL = FSConfigurations.serverURL + "deleteTechnology";
   
   constructor(private _http: HttpClient) { }
 

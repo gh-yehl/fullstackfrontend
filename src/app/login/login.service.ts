@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Login } from "./login";
 
 import { HttpClient, HttpParams } from "@angular/common/http";
+import { FSConfigurations } from "../../global-config";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class LoginService {
   public status: string;
   public technologyList: any[];
 
-  readonly signupURL = "http://localhost:8080/signIn";
+  readonly signupURL = FSConfigurations.serverURL + "signIn";
 
   constructor(private _http: HttpClient) { }
 
