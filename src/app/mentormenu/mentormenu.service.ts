@@ -8,7 +8,7 @@ import { FSConfigurations } from "../../global-config";
 export class MentormenuService {
 
   readonly currentTrainingURL = FSConfigurations.serverURL + "mentorCurrentTraining";
-  readonly completedTrainingURL = FSConfigurations + "mentorCompletedTraining";
+  readonly completedTrainingURL = FSConfigurations.serverURL + "mentorCompletedTraining";
 
 
   constructor(private _http: HttpClient) { }
